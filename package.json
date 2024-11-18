@@ -1,0 +1,73 @@
+{
+  "name": "@pavelglaz/genproto",
+  "version": "0.2.0",
+  "description": "JS codegen from proto with imports from @pavelglaz/types",
+  "bin": {
+    "genproto": "./dist/genproto.js"
+  },
+  "repository": "https://github.com/pavelglaz/genproto.git",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "semantic-release": "semantic-release",
+    "lint": "eslint --ext .ts . && prettier --check .",
+    "lint-fix": "eslint --ext .ts --fix && prettier --write .",
+    "lint:lockfile": "lockfile-lint --path package-lock.json --allowed-hosts registry.npmjs.org --validate-https",
+    "prepare": "npm run build",
+    "find-circulars": "madge --circular --extensions ts ./"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "author": "eslint-config",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "dependencies": {
+    "glob": "11.0.0",
+    "lookpath": "1.2.2",
+    "yargs": "17.7.2"
+  },
+  "peerDependencies": {
+    "ts-proto": ">=1.181.0"
+  },
+  "devDependencies": {
+    "@pavelglaz/configs": "1.2.0",
+    "@pavelglaz/eslint-config": "0.2.0",
+    "@types/node": "20.17.1",
+    "@types/yargs": "^17.0.33",
+    "eslint": "8.57.1",
+    "lockfile-lint": "4.14.0",
+    "madge": "7.0.0",
+    "prettier": "3.3.3",
+    "rimraf": "6.0.1",
+    "semantic-release": "24.0.0"
+  },
+  "eslintConfig": {
+    "extends": "@pavelglaz/eslint-config",
+    "overrides": [
+      {
+        "files": [
+          "*.ts"
+        ],
+        "parserOptions": {
+          "project": [
+            "./tsconfig.json",
+            "./tests/tsconfig.json"
+          ]
+        }
+      }
+    ]
+  },
+  "release": {
+    "extends": "@pavelglaz/configs/dist/semantic-release/package",
+    "branches": [
+      "main"
+    ]
+  },
+  "commitlint": {
+    "extends": "@pavelglaz/configs/dist/commitlint"
+  },
+  "prettier": "@pavelglaz/eslint-config/prettier",
+  "madge": {
+    "tsConfig": "./tsconfig.json"
+  }
+}
