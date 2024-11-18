@@ -1,6 +1,6 @@
 {
   "name": "@pavelglaz/genproto",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "JS codegen from proto with imports from @pavelglaz/types",
   "bin": {
     "genproto": "./dist/genproto.js"
